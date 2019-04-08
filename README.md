@@ -6,6 +6,9 @@ https://www.youtube.com/watch?v=Ke90Tje7VS0
 ## Pre-Reqs
 Need to install Node
 
+### Install
+`npm install`
+
 ### Build
 `npm build`
 
