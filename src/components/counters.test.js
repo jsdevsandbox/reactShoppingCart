@@ -38,4 +38,8 @@ describe("unit tests for the Counters component", () => {
   it("should contain the correct classes for onReset", () => {
     expect(component.find("button").hasClass("btn-primary")).toEqual(true);
   });
+
+  it("should have the correct number of counters in props", () => {
+    expect(component.instance().props.counters).toHaveLength(2);
+  });
 });
