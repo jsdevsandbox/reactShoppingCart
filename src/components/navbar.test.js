@@ -38,8 +38,12 @@ describe("unit tests for navbar component", () => {
 
   it("span element should have the correct text", () => {
     component = shallow(<NavBar totalCounters={3} />);
-    component.setProps({ totalCounters: 3 });
     expect(component.find("span").text()).toBe("3");
     expect(component.find("a").text()).toBe("Navbar 3");
+
+    component.setProps({ totalCounters: 5 });
+
+    expect(component.find("span").text()).toBe("5");
+    expect(component.find("a").text()).toBe("Navbar 5");
   });
 });
