@@ -3,6 +3,7 @@ import ReactDom from "react-dom";
 import Counters from "./counters";
 import { shallow, mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import Counter from "./counter";
 configure({ adapter: new Adapter() });
 
 let onIncrement = jest.fn();
@@ -30,7 +31,6 @@ describe("unit tests for the Counters component", () => {
 
   it("should call onReset callback when onReset button is clicked", () => {
     let onResetButton = component.find("button");
-    // console.log(onResetButton.text());
     onResetButton.simulate("click");
     expect(onReset).toHaveBeenCalled();
   });
@@ -41,5 +41,19 @@ describe("unit tests for the Counters component", () => {
 
   it("should have the correct number of counters in props", () => {
     expect(component.instance().props.counters).toHaveLength(2);
+  });
+
+  it("should have one reset button", () => {
+    expect(component.find("button")).toHaveLength(1);
+  });
+
+  it("should have the correct number of Counter components in Counters component", () => {
+    expect(component.find(Counter)).toHaveLength(2);
+  });
+
+  it("should pass functions through to its Counter children", () => {
+    let counter = component.find(Counter).first();
+    expect(counter.props().onIncrement).toEqual(onIncrement);
+    expect(counter.props().onDelete).toEqual(onDelete);
   });
 });
